@@ -14,6 +14,9 @@ module tt_um_arkiss_titan #( parameter MAX_COUNT = 24'd10_000_000 ) (
     reg [7:0] rx_byte_i, tx_byte_o;
 	wire rx_valid_w;
 
+    wire pll_sys_clock_r, pll_spi_clock_r, spi_pico_i, spi_poci_o, spi_cs_i;
+    assign {pll_sys_clock_r, pll_spi_clock_r, spi_pico_i, spi_poci_o, spi_cs_i} = ui_in[7:3];
+
 	spi_byte_if spi_interface_cvonk (
 		.sysClk(pll_sys_clock_r), .SCLK(pll_spi_clock_r),
 		.MOSI(spi_pico_i), .MISO(spi_poci_o), .SS(spi_cs_i),
