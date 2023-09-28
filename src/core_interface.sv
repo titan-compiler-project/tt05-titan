@@ -48,7 +48,7 @@ module core_interface # (
     logic [VALUE_WIDTH-1:0] output_memory; // if only one output, we can't make instance using [0]
 
     (*keep = 1*) logic interrupt_enabled = 0;
-    logic core_done_signal;
+    // logic core_done_signal;
 
     assign core_interrupt_wo = interrupt_enabled;
     
@@ -60,7 +60,7 @@ module core_interface # (
     reg [VALUE_WIDTH-1:0] output_val_internal;
 
     add_2 uut_add2 (
-        .clock(clk_i), .a(input_memory[0]), .b(input_memory[1]), .c(output_memory), .done(core_done_signal)
+        .clock(clk_i), .a(input_memory[0]), .b(input_memory[1]), .c(output_memory)
     );    
 
 	 always @ (posedge clk_i) begin

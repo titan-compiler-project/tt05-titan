@@ -8,7 +8,7 @@
 // All rights reserved.  Use of copyright notice does not imply publication.
 // All text above must be included in any redistribution
 
-`timescale 1ns / 1ps
+// `timescale 1ns / 1ps
 `default_nettype none
 
 // for SPI MODE 3
