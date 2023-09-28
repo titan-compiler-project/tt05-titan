@@ -17,12 +17,16 @@ module tt_um_arkiss_titan #( parameter MAX_COUNT = 24'd10_000_000 ) (
     wire pll_sys_clock_r, pll_spi_clock_r, spi_pico_i, spi_poci_o, spi_cs_i;
     // assign {pll_sys_clock_r, pll_spi_clock_r, spi_pico_i, spi_poci_o, spi_cs_i} = ui_in[7:3];
 
-    assign pll_sys_clock_r = ui_in[7];
-    assign pll_spi_clock_r = ui_in[6];
-    assign spi_pico_i = ui_in[5];
-    assign spi_cs_i = ui_in[4];
-    
+    assign pll_sys_clock_r = clk;
+    assign pll_spi_clock_r = ui_in[7];
+    assign spi_pico_i = ui_in[6];
+    assign spi_cs_i = ui_in[5];
+
     assign spi_poci_o = uo_out[7];
+
+    assign uo_out[6:0] = 7'b0;
+    assign uio_out[7:0] = 8'b0;
+    assign uio_oe[7:0] = 8'b0;
 
 	spi_byte_if spi_interface_cvonk (
 		.sysClk(pll_sys_clock_r), .SCLK(pll_spi_clock_r),
