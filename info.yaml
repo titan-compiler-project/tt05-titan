@@ -6,7 +6,8 @@ project:
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
   source_files:  
-      - titan_comms_package.sv
+      # - titan_comms_package.sv # cant use with verilog
+      - instruction_params.vh
       - spi_interface.sv
       - add_2.sv
       - core_interface.sv
@@ -29,7 +30,7 @@ yaml_version: 4
 documentation: 
   author:       "Kristaps Jurkans"      # Your name
   title:        "Titan Core"      # Project title
-  language:     "SystemVerilog" # other examples include Verilog, Amaranth, VHDL, etc
+  language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc
   description:  "Interface with a compiled core."      # Short description of what your project does
 
 # Longer description of how the project works. You can use standard markdown format.

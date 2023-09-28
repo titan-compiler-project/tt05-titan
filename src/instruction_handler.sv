@@ -1,4 +1,5 @@
-import TitanComms::*;
+// import TitanComms::*;
+`include "instruction_params.vh"
 
 module instruction_handler # (
     parameter INSTRUCTION_WIDTH = 8,
