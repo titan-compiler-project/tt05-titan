@@ -7,7 +7,7 @@ project:
 # Source files must be in ./src and you must list each source file separately
   source_files:  
       # - titan_comms_package.sv # cant use with verilog
-      - instruction_params.vh
+      # - instruction_params.vh
       - spi_interface.sv
       - add_2.sv
       - core_interface.sv

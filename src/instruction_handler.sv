@@ -1,5 +1,5 @@
 // import TitanComms::*;
-`include "instruction_params.vh"
+// `include "instruction_params.vh"
 
 module instruction_handler # (
     parameter INSTRUCTION_WIDTH = 8,
@@ -21,6 +21,15 @@ module instruction_handler # (
     logic [7:0] current_instruction;
     logic [63:0] rebuilt_instruction;
     logic [ADDRESS_WIDTH-1:0] interrupt_address, stream_address;
+
+    parameter WRITE = 1;
+    parameter READ = 2;
+    parameter STREAM = 3;
+    parameter BIND_INTERRUPT = 4;
+    parameter BIND_READ_ADDRESS = 5;
+    parameter BIND_WRITE_ADDRESS = 6;
+    parameter TRANSFER = 7;
+    parameter REPEAT = 8;
 
 
     // TODO: clean this up
