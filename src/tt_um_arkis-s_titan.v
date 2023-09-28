@@ -15,7 +15,14 @@ module tt_um_arkiss_titan #( parameter MAX_COUNT = 24'd10_000_000 ) (
 	wire rx_valid_w;
 
     wire pll_sys_clock_r, pll_spi_clock_r, spi_pico_i, spi_poci_o, spi_cs_i;
-    assign {pll_sys_clock_r, pll_spi_clock_r, spi_pico_i, spi_poci_o, spi_cs_i} = ui_in[7:3];
+    // assign {pll_sys_clock_r, pll_spi_clock_r, spi_pico_i, spi_poci_o, spi_cs_i} = ui_in[7:3];
+
+    assign pll_sys_clock_r = ui_in[7];
+    assign pll_spi_clock_r = ui_in[6];
+    assign spi_pico_i = ui_in[5];
+    assign spi_cs_i = ui_in[4];
+    
+    assign spi_poci_o = uo_out[7];
 
 	spi_byte_if spi_interface_cvonk (
 		.sysClk(pll_sys_clock_r), .SCLK(pll_spi_clock_r),
@@ -42,51 +49,5 @@ module tt_um_arkiss_titan #( parameter MAX_COUNT = 24'd10_000_000 ) (
 		.clk_i(pll_sys_clock_r), .instruction_i(internal_bus_instruction), .address_i(internal_bus_address),
 		.value_i(internal_bus_value), .result_o(internal_bus_result), .stream_o(internal_bus_stream_w)
 	);
-
-    // wire reset = ! rst_n;
-    // wire [6:0] led_out;
-    // assign uo_out[6:0] = led_out;
-    // assign uo_out[7] = 1'b0;
-
-    // // use bidirectionals as outputs
-    // assign uio_oe = 8'b11111111;
-
-    // // put bottom 8 bits of second counter out on the bidirectional gpio
-    // assign uio_out = second_counter[7:0];
-
-    // // external clock is 10MHz, so need 24 bit counter
-    // reg [23:0] second_counter;
-    // reg [3:0] digit;
-
-    // // if external inputs are set then use that as compare count
-    // // otherwise use the hard coded MAX_COUNT
-    // wire [23:0] compare = ui_in == 0 ? MAX_COUNT: {6'b0, ui_in[7:0], 10'b0};
-
-    // always @(posedge clk) begin
-    //     // if reset, set counter to 0
-    //     if (reset) begin
-    //         second_counter <= 0;
-    //         digit <= 0;
-    //     end else begin
-    //         // if up to 16e6
-    //         if (second_counter == compare) begin
-    //             // reset
-    //             second_counter <= 0;
-
-    //             // increment digit
-    //             digit <= digit + 1'b1;
-
-    //             // only count from 0 to 9
-    //             if (digit == 9)
-    //                 digit <= 0;
-
-    //         end else
-    //             // increment counter
-    //             second_counter <= second_counter + 1'b1;
-    //     end
-    // end
-
-    // instantiate segment display
-    // seg7 seg7(.counter(digit), .segments(led_out));
 
 endmodule
